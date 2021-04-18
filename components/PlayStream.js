@@ -8,31 +8,27 @@ const PlayStream = () => {
   const [isPlaying, setIsPlaying] = React.useState();
   const [playerIcon, setPlayerIcon] = React.useState('play');
 
-  async function playStream() {
-    // console.log("Loading Stream");
+  async function play() {
     const { sound } = await Audio.Sound.createAsync(
       { uri: 'https://radio.burgstudio.co.za/radio/8000/radio.mp3' },
       { shouldPlay: true }
     );
     setSound(sound);
-    setIsPlaying('playing');
-    // console.log("Playing Stream");
+    setIsPlaying(true);
     await sound.playAsync();
   }
 
-  async function pauseStream() {
-    // console.log("Pausing Stream");
+  async function pause() {
     sound.stopAsync();
-    sound.unloadAsync();
-    setIsPlaying('paused');
+    setIsPlaying(false);
   }
 
   function playOrPause() {
-    if (isPlaying == 'playing') {
-      pauseStream();
+    if (isPlaying == true) {
+      pause();
       setPlayerIcon('play');
     } else {
-      playStream();
+      play();
       setPlayerIcon('pause');
     }
   }
@@ -40,8 +36,7 @@ const PlayStream = () => {
   React.useEffect(() => {
     return sound
       ? () => {
-          // console.log("Unloading Sound");
-          sound.unloadAsync();
+          sound.stopAsync();
         }
       : undefined;
   }, [sound]);

@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.reniermyburgh.snack4046856379604bf6a7f2f1884391b12f"
     },
     "web": {
       "favicon": "./assets/favicon.png"
